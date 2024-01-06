@@ -14,8 +14,8 @@ from marshmallow.utils import is_collection
 class Boolean(fields.Boolean):
     def __init__(self, true, false, **kwargs):
         super(Boolean, self).__init__(**kwargs)
-        self.truthy = [true]
-        self.falsy = [false]
+        self.truthy = true if isinstance(true, list) else [true]
+        self.falsy = false if isinstance(false, list) else [false]
 
     def _serialize(self, value, attr, obj):
         if value:
